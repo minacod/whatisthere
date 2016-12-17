@@ -35,6 +35,6 @@ public final class WhatsThereContract {
 
     public static final String DELETE_TABLE="DROP TABLE IF EXIST "+ NewsTable.TABLE_NAME+" ;" ;
     public static final String SELECT_ALL="SELECT * FROM "+ NewsTable.TABLE_NAME +" ;";
-    public static final String SELECT_ROW_BY_IMAGE_URL ="SELECT * FROM "+NewsTable.TABLE_NAME+" WHERE "+NewsTable.IMAGE_URL;
+    public static final String SELECT_ROW_BY_NEWS_URL ="SELECT * FROM "+NewsTable.TABLE_NAME+" WHERE "+NewsTable.NEWS_URL;
 
 }

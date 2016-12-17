@@ -7,4 +7,7 @@
     <string name="title_activity_main_sidebar">MainSidebar</string>
     <string name="title_activity_news_details">NewsDetails</string>
     <string name="title_activity_favourite">Favourite</string>
+    <string name="unknown">Unknown</string>
+    <string name="by">by&#160;:&#160;</string>
+    <string name="a">by Unknown</string>
 </resources>

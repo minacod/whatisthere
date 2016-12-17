@@ -19,7 +19,6 @@ import com.squareup.picasso.Picasso;
 public class NewsListAdapter extends BaseAdapter {
     private int newsSize =0;
     private Context mContext;
-
     public NewsListAdapter(Context context){
         mContext=context;
     }
@@ -60,9 +59,10 @@ public class NewsListAdapter extends BaseAdapter {
             convertView.setTag(holder);
         }
         ViewHolder viewHolder =(ViewHolder)convertView.getTag();
+
         if (News.news.get(position).getAuthor()!= "null")
             viewHolder.author.setText(News.news.get(position).getAuthor());
-        else viewHolder.author.setText("no author name available");
+        else viewHolder.author.setText(R.string.unknown);
         viewHolder.title.setText(News.news.get(position).getTitle());
         //viewHolder.description.setText(News.news.get(position).getDescription());
         Picasso.with(mContext).load(News.news.get(position).getNewsImageURL())
@@ -70,6 +70,7 @@ public class NewsListAdapter extends BaseAdapter {
         return convertView;
 
     }
+
 
     public void setNewsSize(int newsSize) {
 

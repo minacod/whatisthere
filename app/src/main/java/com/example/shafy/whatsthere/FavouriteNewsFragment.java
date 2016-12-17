@@ -41,14 +41,14 @@ public class FavouriteNewsFragment extends Fragment {
         ListView listView=(ListView)fragment.findViewById(R.id.favourites_list);
         listView.setAdapter(adapter);
         registerForContextMenu(listView);
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                removeRow(position);
-//                adapter.changeCursor(getDatabase());
-//                Toast.makeText(getContext(),"Removed",Toast.LENGTH_LONG).show();
-//            }
-//        });
+/*        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                removeRow(position);
+                adapter.changeCursor(getDatabase());
+               Toast.makeText(getContext(),"Removed",Toast.LENGTH_LONG).show();
+           }
+       });*/
 
         return fragment;
     }
@@ -63,8 +63,12 @@ public class FavouriteNewsFragment extends Fragment {
     void removeRow(int position){
         NewsDbHelper helper=new NewsDbHelper(getContext());
         SQLiteDatabase database=helper.getWritableDatabase();
-        String[]args={String.valueOf(position)};
+        String[]args={cursor.getString(cursor.getColumnIndexOrThrow(NewsTable.ID))};
         database.delete(NewsTable.TABLE_NAME, NewsTable.ID+"=?",args);
+        database.close();
+        Intent intent=new Intent(getContext(),Favourite.class);
+        intent.putExtra("fragment","News");
+        startActivity(intent);
 
     }
 
@@ -84,6 +88,7 @@ public class FavouriteNewsFragment extends Fragment {
             case R.id.delete:
                 removeRow(position);
                 adapter.changeCursor(getDatabase());
+                Toast.makeText(getContext(),"Deleted",Toast.LENGTH_LONG).show();
                 return true;
             case R.id.openNews:
                 Cursor cursor=this.cursor;

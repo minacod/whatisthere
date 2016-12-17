@@ -2,6 +2,7 @@ package com.example.shafy.whatsthere;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +43,8 @@ public class NewsCursorAdapter extends CursorAdapter {
         description.setText(cursor.getString(cursor.getColumnIndexOrThrow(NewsTable.DESCRIPTION_COLUMN)));
         date.setText(cursor.getString(cursor.getColumnIndexOrThrow(NewsTable.DATE_COLUMN)));
         Picasso.with(context).load(cursor.getString(cursor.getColumnIndex(NewsTable.IMAGE_URL))).
-                error(R.drawable.app_image_background).into(image);
+                error(R.drawable.no).into(image);
+        Log.v("ID",cursor.getString(cursor.getColumnIndex(NewsTable.ID)));
 
 
 
