@@ -95,7 +95,10 @@ public class NewsHome extends AppCompatActivity
             getSupportFragmentManager().beginTransaction().replace(R.id.news_first_look,newsFeedFragment).commit();
         }
         if (id==R.id.favorite){
-            //what happens when favorite is pressed
+
+            Intent intent=new Intent(this,Favourite.class);
+            intent.putExtra("fragment","News");
+            startActivity(intent);
 
         }
         if(id==R.id.general){

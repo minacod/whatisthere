@@ -1,6 +1,7 @@
 package com.example.shafy.whatsthere;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -47,12 +48,14 @@ public class NewsFeedFragment extends Fragment {
         adapter=new NewsListAdapter(getContext());
         newsList.setAdapter(adapter);
 
-        final ListView lv=(ListView)fragment.findViewById(R.id.news_list_view);
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        newsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                int pos= (int) lv.getItemAtPosition(i);
-                Log.v("pos", String.valueOf(pos));
+
+                Intent ii= new Intent(getContext(),NewsDetails.class);
+                ii.putExtra("pos",i);
+                startActivity(ii);
+
             }
         });
 
@@ -165,7 +168,8 @@ public class NewsFeedFragment extends Fragment {
                             newsJSON.getString("title"),
                             newsJSON.getString("description"),
                             newsJSON.getString("url"),
-                            newsJSON.getString("urlToImage")
+                            newsJSON.getString("urlToImage"),
+                            newsJSON.getString("publishedAt")
                     ));
 
                 }
