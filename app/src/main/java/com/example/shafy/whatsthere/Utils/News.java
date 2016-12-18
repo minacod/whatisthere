@@ -34,7 +34,6 @@ public class News {
         News.source = source;
         ARTICLES_URL="https://newsapi.org/v1/articles?source="+source+"&apiKey="+API_KEY;
     }
-
     public String getAuthor() {
         return author;
     }

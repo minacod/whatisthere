@@ -1,8 +1,11 @@
 package com.example.shafy.whatsthere;
 
+
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -29,11 +32,18 @@ public class FavouriteNewsFragment extends Fragment {
     Cursor cursor;
     static int position;
     NewsCursorAdapter adapter;
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null;
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         cursor=getDatabase();
         if(cursor.getCount()==0){
+            if(!isNetworkConnected())
+                return inflater.inflate(R.layout.no_connection,container,false);
             return inflater.inflate(R.layout.no_database,container,false);
         }
         View fragment=inflater.inflate(R.layout.favourite_list_view,container,false);

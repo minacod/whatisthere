@@ -24,7 +24,7 @@ public class Favourite extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_favourite);
+        setContentView(R.layout.app_bar_favourite);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -72,9 +72,10 @@ public class Favourite extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.ho) {
+            Intent ii= new Intent(getApplicationContext(),NewsHome.class);
+            startActivity(ii);
+            finish();
         }
 
         return super.onOptionsItemSelected(item);

@@ -8,7 +8,7 @@
         android:layout_height="350dp"
         android:layout_centerVertical="true"
         android:layout_margin="5dp"
-        android:src="@drawable/no_fav"
+        android:src="@drawable/no_con"
         android:background="#ffffff"/>
 
 </RelativeLayout>
