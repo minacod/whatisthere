@@ -43,6 +43,11 @@ public class NewsFeedFragment extends Fragment {
     ListView newsList;
     NewsListAdapter adapter;
     private String source="";
+    NewsListviewListener listener;
+
+    public void setListener(NewsListviewListener listener) {
+        this.listener = listener;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

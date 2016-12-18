@@ -3,6 +3,7 @@ package com.example.shafy.whatsthere;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.icu.util.ULocale;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,13 +20,14 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.shafy.whatsthere.Utils.News;
+import com.example.shafy.whatsthere.Utils.Sources;
 
 import java.net.InetAddress;
 
 import static java.security.AccessController.getContext;
 
 public class NewsHome extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener , com.example.shafy.whatsthere.NewsListviewListener {
     private boolean mIsTwoPne=false;
     private static boolean fr =true;
 
@@ -65,6 +67,7 @@ public class NewsHome extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        newsFragment.setListener(this);
         getSupportFragmentManager().beginTransaction().replace(R.id.news_first_look,newsFragment).commit();
 
 
@@ -83,6 +86,34 @@ public class NewsHome extends AppCompatActivity
 
 
     }
+
+    @Override
+    public void openDetails(int pos) {
+        if(mIsTwoPne){
+            NewsDetailsFragment fragment=new NewsDetailsFragment();
+            Bundle bundle=new Bundle();
+            bundle.putInt("position",pos);
+            fragment.setArguments(bundle);
+            Log.v("home pos",String.valueOf(pos));
+            getSupportFragmentManager().beginTransaction().replace(R.id.news_details_fragment,fragment).commit();
+        }
+        else {
+            Intent intent=new Intent(this,NewsDetails.class);
+            intent.putExtra("position",pos);
+            startActivity(intent);
+
+        }
+    }
+
+    @Override
+    public void openChannel(int pos) {
+        int position=pos;
+        News.setSource(Sources.sources.get(position).getSourceId());
+        NewsFeedFragment fragment=new NewsFeedFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.news_first_look,fragment).commit();
+
+    }
+
     private boolean isNetworkConnected() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
