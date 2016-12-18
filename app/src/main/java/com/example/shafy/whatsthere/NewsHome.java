@@ -81,7 +81,9 @@ public class NewsHome extends AppCompatActivity
         if(!isNetworkConnected()){
             Intent intent=new Intent(this,Favourite.class);
             intent.putExtra("fragment","News");
+            Toast.makeText(getApplicationContext(),"You are offline !",Toast.LENGTH_SHORT).show();
             startActivity(intent);
+            finish();
         }
 
 
