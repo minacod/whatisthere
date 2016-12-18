@@ -51,14 +51,6 @@ public class FavouriteNewsFragment extends Fragment {
         ListView listView=(ListView)fragment.findViewById(R.id.favourites_list);
         listView.setAdapter(adapter);
         registerForContextMenu(listView);
-/*        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                removeRow(position);
-                adapter.changeCursor(getDatabase());
-               Toast.makeText(getContext(),"Removed",Toast.LENGTH_LONG).show();
-           }
-       });*/
 
         return fragment;
     }
@@ -110,7 +102,7 @@ public class FavouriteNewsFragment extends Fragment {
                     return true;
                 }
                 else {
-                    Toast.makeText(getContext(),"No Url Found",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),"No Url Found",Toast.LENGTH_SHORT).show();
                 }
 
            default:   return super.onContextItemSelected(item);

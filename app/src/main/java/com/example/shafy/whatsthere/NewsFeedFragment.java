@@ -42,6 +42,7 @@ public class NewsFeedFragment extends Fragment {
   //  @BindView(R.id.news_list_view)
     ListView newsList;
     NewsListAdapter adapter;
+    private String source="";
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -70,6 +71,9 @@ public class NewsFeedFragment extends Fragment {
         return fragment;
     }
 
+    public void setS(String s){this.source=s;}
+    public String getS(){return News.getSource();}
+
     public boolean connected(){
         ConnectivityManager manager=(ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo info=manager.getActiveNetworkInfo();
@@ -89,6 +93,8 @@ public class NewsFeedFragment extends Fragment {
 
             // Will contain the raw JSON response as a string.
             String newsJsonStr = null;
+            if(source!="")
+            News.setSource(source);
             Uri builturi=Uri.parse(News.getArticlesUrl()).buildUpon()
                     .build();
             Log.v("News Path",(News.getArticlesUrl()));
@@ -152,6 +158,7 @@ public class NewsFeedFragment extends Fragment {
 
             return null;
         }
+
 
         @Override
         protected void onPostExecute(Void aVoid) {

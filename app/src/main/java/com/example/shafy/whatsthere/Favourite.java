@@ -18,6 +18,7 @@ import android.view.MenuItem;
 
 import com.example.shafy.whatsthere.Data.NewsDbHelper;
 import com.example.shafy.whatsthere.Data.WhatsThereContract;
+import com.example.shafy.whatsthere.Utils.News;
 
 public class Favourite extends AppCompatActivity {
 
@@ -74,6 +75,7 @@ public class Favourite extends AppCompatActivity {
 
         if (id == R.id.ho) {
             Intent ii= new Intent(getApplicationContext(),NewsHome.class);
+            NewsHome.setfr(true);
             startActivity(ii);
             finish();
         }

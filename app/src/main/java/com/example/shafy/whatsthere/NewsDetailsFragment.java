@@ -163,7 +163,7 @@ public class NewsDetailsFragment extends Fragment {
         NewsDbHelper helper=new NewsDbHelper(getContext());
         SQLiteDatabase database=helper.getWritableDatabase();
         String[] args=new String[1];
-        args[0]=News.news.get(position).getNewsImageURL();
+        args[0]=News.news.get(position).getNewsURL();
         database.delete(NewsTable.TABLE_NAME,NewsTable.NEWS_URL+"=?",args);
         database.close();
 
@@ -172,7 +172,7 @@ public class NewsDetailsFragment extends Fragment {
       boolean isInDatabase(){
         NewsDbHelper helper=new NewsDbHelper(getContext());
         SQLiteDatabase database=helper.getWritableDatabase();
-        String[] selection={News.news.get(position).getNewsImageURL()};
+        String[] selection={News.news.get(position).getNewsURL()};
         Cursor cursor=database.rawQuery(WhatsThereContract.SELECT_ROW_BY_NEWS_URL +" =? ",selection);
 
         if(cursor.getCount()>0) {
