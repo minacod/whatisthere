@@ -57,14 +57,12 @@ public class NewsFeedFragment extends Fragment {
         adapter=new NewsListAdapter(getContext());
         newsList.setAdapter(adapter);
 
+
         newsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                Intent ii= new Intent(getContext(),NewsDetails.class);
-                ii.putExtra("pos",i);
-                startActivity(ii);
-
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ((NewsHome)getActivity()).openDetails(position);
+                Log.v("listener pos",String.valueOf(position));
             }
         });
         setHasOptionsMenu(true);

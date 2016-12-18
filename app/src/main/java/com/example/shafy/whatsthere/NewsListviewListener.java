@@ -5,5 +5,4 @@ package com.example.shafy.whatsthere;
  */
 public interface NewsListviewListener {
      void openDetails(int pos);
-     void openChannel(int pos);
 }

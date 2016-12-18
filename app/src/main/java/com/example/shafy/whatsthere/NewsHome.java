@@ -27,7 +27,7 @@ import java.net.InetAddress;
 import static java.security.AccessController.getContext;
 
 public class NewsHome extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener , com.example.shafy.whatsthere.NewsListviewListener {
+        implements NavigationView.OnNavigationItemSelectedListener , NewsListviewListener {
     private boolean mIsTwoPne=false;
     private static boolean fr =true;
 
@@ -85,6 +85,8 @@ public class NewsHome extends AppCompatActivity
         }
 
 
+
+
     }
 
     @Override
@@ -105,14 +107,7 @@ public class NewsHome extends AppCompatActivity
         }
     }
 
-    @Override
-    public void openChannel(int pos) {
-        int position=pos;
-        News.setSource(Sources.sources.get(position).getSourceId());
-        NewsFeedFragment fragment=new NewsFeedFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.news_first_look,fragment).commit();
 
-    }
 
     private boolean isNetworkConnected() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

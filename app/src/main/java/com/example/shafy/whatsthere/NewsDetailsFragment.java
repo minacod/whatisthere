@@ -59,13 +59,13 @@ public class NewsDetailsFragment extends Fragment {
         def=(LinearLayout)fragment.findViewById(R.id.defaultCon);
         setHasOptionsMenu(true);
         Bundle bundle=getArguments();
-        position=bundle.getInt("pos");
+        position=bundle.getInt("position");
+        Log.v("detail pos",String.valueOf(position));
         Picasso.with(getContext()).load(News.news.get(position).getNewsImageURL()).error(R.drawable.no).into(image);
         String name=News.news.get(position).getAuthor();
         String s;
         if(!name.equals("null"))
         {
-            String ss="more";
             if(name.length()>20){
                 date=(TextView) fragment.findViewById(R.id.details_dateb);
                 def.setVisibility(View.GONE);
