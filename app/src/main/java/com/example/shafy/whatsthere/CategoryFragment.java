@@ -55,6 +55,7 @@ public class CategoryFragment extends Fragment {
                 int pos= (int) lv.getItemAtPosition(i);
                 Log.v("pos", String.valueOf(pos));
                 String s =Sources.sources.get(i).getSourceId();
+                Log.v("source",Sources.sources.get(i).getSourceId());
                 News.setSource(s);
                 Intent ii = new Intent(getContext(),NewsHome.class);
                 startActivity(ii);

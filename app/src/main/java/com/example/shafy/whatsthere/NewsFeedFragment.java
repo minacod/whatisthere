@@ -1,6 +1,7 @@
 package com.example.shafy.whatsthere;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -10,6 +11,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -38,6 +42,7 @@ public class NewsFeedFragment extends Fragment {
   //  @BindView(R.id.news_list_view)
     ListView newsList;
     NewsListAdapter adapter;
+    private String source="";
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -47,14 +52,17 @@ public class NewsFeedFragment extends Fragment {
         adapter=new NewsListAdapter(getContext());
         newsList.setAdapter(adapter);
 
-        final ListView lv=(ListView)fragment.findViewById(R.id.news_list_view);
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        newsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                int pos= (int) lv.getItemAtPosition(i);
-                Log.v("pos", String.valueOf(pos));
+
+                Intent ii= new Intent(getContext(),NewsDetails.class);
+                ii.putExtra("pos",i);
+                startActivity(ii);
+
             }
         });
+        setHasOptionsMenu(true);
 
         if(connected()){
         GetNews getNews=new GetNews();
@@ -62,6 +70,9 @@ public class NewsFeedFragment extends Fragment {
 
         return fragment;
     }
+
+    public void setS(String s){this.source=s;}
+    public String getS(){return News.getSource();}
 
     public boolean connected(){
         ConnectivityManager manager=(ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -82,6 +93,8 @@ public class NewsFeedFragment extends Fragment {
 
             // Will contain the raw JSON response as a string.
             String newsJsonStr = null;
+            if(source!="")
+            News.setSource(source);
             Uri builturi=Uri.parse(News.getArticlesUrl()).buildUpon()
                     .build();
             Log.v("News Path",(News.getArticlesUrl()));
@@ -146,6 +159,7 @@ public class NewsFeedFragment extends Fragment {
             return null;
         }
 
+
         @Override
         protected void onPostExecute(Void aVoid) {
             adapter.setNewsSize(News.news.size());
@@ -165,7 +179,8 @@ public class NewsFeedFragment extends Fragment {
                             newsJSON.getString("title"),
                             newsJSON.getString("description"),
                             newsJSON.getString("url"),
-                            newsJSON.getString("urlToImage")
+                            newsJSON.getString("urlToImage"),
+                            newsJSON.getString("publishedAt")
                     ));
 
                 }
