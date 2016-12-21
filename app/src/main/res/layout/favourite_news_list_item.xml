@@ -44,7 +44,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/favourite_news_date"
                     android:textSize="15sp"
-                    android:hint="Date"
+                    android:hint="Unknown"
                     />
             </LinearLayout>
         </RelativeLayout>

@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
-    android:background="@color/LightGray"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:background="@color/LightGray"
     tools:context="com.example.shafy.whatsthere.NewsHome">
 
         <FrameLayout
@@ -15,10 +15,15 @@
             android:layout_height="match_parent"
             android:id="@+id/news_first_look"
             android:layout_weight=".4"/>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2dp"
+            android:background="@color/Gray"/>
         <FrameLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:id="@+id/news_details_fragment"
             android:layout_weight=".6"
-            android:layout_gravity="center_vertical"/>
+            android:layout_gravity="start"/>
     </LinearLayout>

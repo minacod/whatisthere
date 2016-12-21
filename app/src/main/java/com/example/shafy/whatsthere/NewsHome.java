@@ -191,6 +191,10 @@ public class NewsHome extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        if (!isNetworkConnected()){
+            Toast.makeText(getApplicationContext(),"You are offline !",Toast.LENGTH_SHORT).show();
+        }
+
         if (id==R.id.favorite){
 
             Intent intent=new Intent(this,Favourite.class);

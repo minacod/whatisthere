@@ -71,7 +71,7 @@ public class FavouriteNewsFragment extends Fragment {
         Intent intent=new Intent(getContext(),Favourite.class);
         intent.putExtra("fragment","News");
         startActivity(intent);
-
+        getActivity().finish();
     }
 
     @Override
